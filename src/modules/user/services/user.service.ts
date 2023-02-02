@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { BasicCreateUserReqDto } from '../dtos/create-user-req.dto';
+import { BasicUpdateUserReqDto } from '../dtos/update-user-req.dto';
 import { UserRepository } from '../repositories/user.repository';
 import { UserServiceInterface } from './user.service.interface';
 
@@ -15,6 +16,10 @@ export class UserService implements UserServiceInterface {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     return user;
+  }
+
+  async update(id: string, basicUpdateUserReqDto: BasicUpdateUserReqDto) {
+    await this.userRepository.update(basicUpdateUserReqDto, id);
   }
 
   async findById(id: string) {

@@ -4,9 +4,11 @@ import {
   Get,
   Param,
   Post,
+  Put,
   ValidationPipe,
 } from '@nestjs/common';
 import { BasicCreateUserReqDto } from '../dtos/create-user-req.dto';
+import { BasicUpdateUserReqDto } from '../dtos/update-user-req.dto';
 import { UserService } from '../services/user.service';
 import { UserControllerInterface } from './user.controller.interface';
 
@@ -25,6 +27,20 @@ export class UserController implements UserControllerInterface {
       return error;
     }
   }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body(ValidationPipe) basicUpdateUserReqDto: BasicUpdateUserReqDto,
+  ) {
+    try {
+      await this.userService.update(id, basicUpdateUserReqDto);
+      return { Message: 'Usuario editado' };
+    } catch (error) {
+      return error;
+    }
+  }
+
   @Get(':id')
   async findById(@Param('id') id: string) {
     try {
