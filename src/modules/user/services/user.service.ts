@@ -1,13 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { BasicCreateUserReqDto } from '../dtos/create-user-req.dto';
-import { BasicCreateUserResDto } from '../dtos/create-user-res.dto';
-import { User } from '../models/user.model';
 import { UserRepository } from '../repositories/user.repository';
+import { UserServiceInterface } from './user.service.interface';
 
 @Injectable()
-export class UserService {
+export class UserService implements UserServiceInterface {
   constructor(private readonly userRepository: UserRepository) {}
 
   async created(basicCreateUserReqDto: BasicCreateUserReqDto) {

@@ -8,9 +8,10 @@ import {
 } from '@nestjs/common';
 import { BasicCreateUserReqDto } from '../dtos/create-user-req.dto';
 import { UserService } from '../services/user.service';
+import { UserControllerInterface } from './user.controller.interface';
 
 @Controller('user')
-export class UserController {
+export class UserController implements UserControllerInterface {
   constructor(private readonly userService: UserService) {}
 
   @Post()

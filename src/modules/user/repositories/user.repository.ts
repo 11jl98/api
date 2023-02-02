@@ -29,6 +29,6 @@ export class UserRepository {
       },
     });
 
-    return user;
+    return user[0];
   }
 }

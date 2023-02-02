@@ -1,4 +1,4 @@
-import { IsString, isNotEmpty } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class BasicCreateUserReqDto {
   @IsString()
