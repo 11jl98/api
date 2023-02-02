@@ -1,0 +1,6 @@
+{
+    "database": "localhost:3306",
+    "type": "mysql",
+    "synchronize": true,
+    "entities":["dist/**/*.model.js"]
+}
