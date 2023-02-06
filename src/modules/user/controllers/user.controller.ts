@@ -12,6 +12,7 @@ import { BasicUpdateUserReqDto } from '../dtos/update-user-req.dto';
 import { UserService } from '../services/user.service';
 import { UserControllerInterface } from './user.controller.interface';
 
+
 @Controller('user')
 export class UserController implements UserControllerInterface {
   constructor(private readonly userService: UserService) {}
