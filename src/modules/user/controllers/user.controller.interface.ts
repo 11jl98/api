@@ -9,4 +9,5 @@ export interface UserControllerInterface {
     basicUpdateUserReqDto: BasicUpdateUserReqDto,
   ): Promise<any>;
   findById(id: string): Promise<User>;
+  findByAuth(id: string): Promise<User>;
 }

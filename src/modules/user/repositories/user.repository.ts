@@ -37,4 +37,18 @@ export class UserRepository {
 
     return user[0];
   }
+  async findByAuth(nameuser: string) {
+    const user = await this.dataSource.find({
+      select: {
+        email: true,
+        password: true,
+        id: true,
+      },
+      where: {
+        nameuser: nameuser,
+      },
+    });
+
+    return user[0];
+  }
 }
