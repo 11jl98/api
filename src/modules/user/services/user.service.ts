@@ -28,4 +28,11 @@ export class UserService implements UserServiceInterface {
       throw new HttpException('Não exite esse usuario', HttpStatus.NOT_FOUND);
     return user;
   }
+
+  async findByAuth(nameuser: string) {
+    const user = await this.userRepository.findByAuth(nameuser);
+    if (!user)
+      throw new HttpException('Não exite esse usuario', HttpStatus.NOT_FOUND);
+    return user;
+  }
 }

@@ -12,7 +12,6 @@ import { BasicUpdateUserReqDto } from '../dtos/update-user-req.dto';
 import { UserService } from '../services/user.service';
 import { UserControllerInterface } from './user.controller.interface';
 
-
 @Controller('user')
 export class UserController implements UserControllerInterface {
   constructor(private readonly userService: UserService) {}
@@ -44,6 +43,16 @@ export class UserController implements UserControllerInterface {
 
   @Get(':id')
   async findById(@Param('id') id: string) {
+    try {
+      const user = await this.userService.findById(id);
+      return user;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  @Get(':id')
+  async findByAuth(@Param('id') id: string) {
     try {
       const user = await this.userService.findById(id);
       return user;
