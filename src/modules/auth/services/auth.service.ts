@@ -10,8 +10,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.userService.findByAuth(username);
+  async validateUser(nameuser: string, pass: string): Promise<any> {
+    const user = await this.userService.findByAuth(nameuser);
 
     if (!user)
       throw new HttpException('Não exite esse usuario', HttpStatus.FORBIDDEN);
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { nameuser: user.nameuser, sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
     };
