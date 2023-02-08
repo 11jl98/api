@@ -5,8 +5,10 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/utils/jwt-auth.guard';
 import { BasicCreateUserReqDto } from '../dtos/create-user-req.dto';
 import { BasicUpdateUserReqDto } from '../dtos/update-user-req.dto';
 import { UserService } from '../services/user.service';
@@ -27,7 +29,7 @@ export class UserController implements UserControllerInterface {
       return error;
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -40,19 +42,9 @@ export class UserController implements UserControllerInterface {
       return error;
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findById(@Param('id') id: string) {
-    try {
-      const user = await this.userService.findById(id);
-      return user;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  @Get(':id')
-  async findByAuth(@Param('id') id: string) {
     try {
       const user = await this.userService.findById(id);
       return user;
