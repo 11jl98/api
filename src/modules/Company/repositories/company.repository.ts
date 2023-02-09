@@ -18,4 +18,16 @@ export class CompanyRepository {
     );
     return company;
   }
+
+  async findById(id: string, id_empresa: string) {
+    const company = await this.dataSource.find({
+      select: {},
+      where: {
+        id: id,
+        id_empresa: id_empresa,
+      },
+    });
+
+    return company[0];
+  }
 }

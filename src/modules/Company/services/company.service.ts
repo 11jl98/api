@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { BasicCreateCompanyReqDto } from '../dtos/create-company-req.dto';
 import { companyServiceInterface } from './company.service.interface';
 import { CompanyRepository } from '../repositories/company.repository';
-
 @Injectable()
 export class CompanyService implements companyServiceInterface {
   constructor(private readonly companyRepository: CompanyRepository) {}
@@ -21,6 +20,11 @@ export class CompanyService implements companyServiceInterface {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     delete company.id_empresa;
+    return company;
+  }
+
+  async findById(id: string, id_empresa: string) {
+    const company = await this.companyRepository.findById(id, id_empresa);
     return company;
   }
 }

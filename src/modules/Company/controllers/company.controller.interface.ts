@@ -11,5 +11,5 @@ export interface companyControllerInterface {
   //     id: string,
   //     basicUpdatecompanyReqDto: BasicUpdateCompanyReqDto,
   //   ): Promise<any>;
-  //   findById(id: string): Promise<Company>;
+  findById(id: string, req: any): Promise<Company>;
 }

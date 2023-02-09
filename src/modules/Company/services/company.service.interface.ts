@@ -7,9 +7,6 @@ export interface companyServiceInterface {
     basicCreatecompanyReqDto: BasicCreateCompanyReqDto,
     id_empresa: string,
   ): Promise<Company>;
-  //   update(
-  //     id: string,
-  //     basicUpdatecompanyReqDto: BasicUpdateCompanyReqDto,
-  //   ): Promise<any>;
-  //   findById(id: string): Promise<Company>;
+
+  findById(id: string, id_empresa: string): Promise<Company>;
 }

@@ -5,8 +5,9 @@ import {
   UseGuards,
   ValidationPipe,
   Request,
+  Get,
+  Param,
 } from '@nestjs/common';
-import { Req } from '@nestjs/common/decorators';
 import { JwtAuthGuard } from '../../../utils/jwt-auth.guard';
 import { BasicCreateCompanyReqDto } from '../dtos/create-company-req.dto';
 import { CompanyService } from '../services/company.service';
@@ -31,5 +32,11 @@ export class CompanyController implements companyControllerInterface {
     } catch (error) {
       return error;
     }
+  }
+  @Get(':id')
+  async findById(@Param('id') id_company: string, @Request() req) {
+    const { id } = req.user;
+    const company = await this.companyService.findById(id_company, id);
+    return company;
   }
 }
