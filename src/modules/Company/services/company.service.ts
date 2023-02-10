@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { BasicCreateCompanyReqDto } from '../dtos/create-company-req.dto';
-import { companyServiceInterface } from './company.service.interface';
+import { CompanyServiceInterface } from './company.service.interface';
 import { CompanyRepository } from '../repositories/company.repository';
 @Injectable()
-export class CompanyService implements companyServiceInterface {
+export class CompanyService implements CompanyServiceInterface {
   constructor(private readonly companyRepository: CompanyRepository) {}
 
   async created(

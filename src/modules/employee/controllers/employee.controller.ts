@@ -9,23 +9,23 @@ import {
   Param,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../../../utils/jwt-auth.guard';
-import { BasicCreateCompanyReqDto } from '../dtos/create-company-req.dto';
-import { CompanyService } from '../services/company.service';
-import { CompanyControllerInterface } from './company.controller.interface';
+import { BasicCreateEmployeeReqDto } from '../dtos/create-employee-req.dto';
+import { CompanyService } from '../services/employee.service';
+import { EmployeeControllerInterface } from './employee.controller.interface';
 
 @Controller('company')
-export class CompanyController implements CompanyControllerInterface {
+export class CompanyController implements EmployeeControllerInterface {
   constructor(private readonly companyService: CompanyService) {}
   @UseGuards(JwtAuthGuard)
   @Post()
   async created(
-    @Body(ValidationPipe) basicCreateCompanyReqDto: BasicCreateCompanyReqDto,
+    @Body(ValidationPipe) basicCreateEmployeeReqDto: BasicCreateEmployeeReqDto,
     @Request() req,
   ) {
     try {
       const { id } = req.user;
       const user = await this.companyService.created(
-        basicCreateCompanyReqDto,
+        basicCreateEmployeeReqDto,
         id as string,
       );
       return user;
