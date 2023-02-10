@@ -10,12 +10,12 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../../../utils/jwt-auth.guard';
 import { BasicCreateEmployeeReqDto } from '../dtos/create-employee-req.dto';
-import { CompanyService } from '../services/employee.service';
+import { EmployeeService } from '../services/employee.service';
 import { EmployeeControllerInterface } from './employee.controller.interface';
 
 @Controller('company')
 export class CompanyController implements EmployeeControllerInterface {
-  constructor(private readonly companyService: CompanyService) {}
+  constructor(private readonly employeeService: EmployeeService) {}
   @UseGuards(JwtAuthGuard)
   @Post()
   async created(
@@ -24,7 +24,7 @@ export class CompanyController implements EmployeeControllerInterface {
   ) {
     try {
       const { id } = req.user;
-      const user = await this.companyService.created(
+      const user = await this.employeeService.created(
         basicCreateEmployeeReqDto,
         id as string,
       );
@@ -36,7 +36,7 @@ export class CompanyController implements EmployeeControllerInterface {
   @Get(':id')
   async findById(@Param('id') id_company: string, @Request() req) {
     const { id } = req.user;
-    const company = await this.companyService.findById(id_company, id);
+    const company = await this.employeeService.findById(id_company, id);
     return company;
   }
 }
