@@ -13,8 +13,8 @@ import { BasicCreateEmployeeReqDto } from '../dtos/create-employee-req.dto';
 import { EmployeeService } from '../services/employee.service';
 import { EmployeeControllerInterface } from './employee.controller.interface';
 
-@Controller('company')
-export class CompanyController implements EmployeeControllerInterface {
+@Controller('emplyoee')
+export class EmployeeController implements EmployeeControllerInterface {
   constructor(private readonly employeeService: EmployeeService) {}
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -36,7 +36,7 @@ export class CompanyController implements EmployeeControllerInterface {
   @Get(':id')
   async findById(@Param('id') id_company: string, @Request() req) {
     const { id } = req.user;
-    const company = await this.employeeService.findById(id_company, id);
-    return company;
+    const emplyoee = await this.employeeService.findById(id_company, id);
+    return emplyoee;
   }
 }
